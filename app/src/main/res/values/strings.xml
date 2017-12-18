@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Odjazd</string>
+    <string name="work">Praca</string>
+    <string name="home">Dom</string>
 </resources>
