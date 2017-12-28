@@ -2,4 +2,8 @@
     <string name="app_name">Odjazd</string>
     <string name="work">Praca</string>
     <string name="home">Dom</string>
+    <string name="number">Numer</string>
+    <string name="leave">Wyjdź</string>
+    <string name="on_the_spot">Na miejscu</string>
+    <string name="transfer">Przesiadka</string>
 </resources>

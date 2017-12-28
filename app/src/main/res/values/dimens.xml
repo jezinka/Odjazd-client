@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_margins">20dp</dimen>
+    <dimen name="margin">20dp</dimen>
+    <dimen name="column_size">100dp</dimen>
+    <dimen name="bus_column_size">60dp</dimen>
+    <dimen name="text_view_height">20dp</dimen>
+    <dimen name="layout_margin">40dp</dimen>
 </resources>

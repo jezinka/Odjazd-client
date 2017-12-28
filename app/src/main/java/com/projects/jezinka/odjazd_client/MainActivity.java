@@ -4,8 +4,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,19 +21,25 @@ import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private static final String ODJAZD_SERVER_URL = "https://odjazd-189315.appspot.com/";
     private static final String PARAM_FROM = "from";
     private static final String WORK_PARAM = "work";
     private static final String HOME_PARAM = "home";
 
-    TextView mTextView = null;
+    private RecyclerView mRoutesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextView = findViewById(R.id.textView);
+        mRoutesList = findViewById(R.id.route_list_rv);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mRoutesList.setLayoutManager(layoutManager);
+        mRoutesList.setHasFixedSize(true);
     }
 
     public void homeButtonClick(View view) {
@@ -49,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
         }
         return url;
     }
@@ -60,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 return getResponseFromHttpUrl(url);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage());
             }
         }
         return "";
@@ -90,7 +101,13 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s != null) {
-                mTextView.setText(s);
+                try {
+                    JSONArray scheduleJsonList = new JSONArray(s);
+                    RoutesAdapter mAdapter = new RoutesAdapter(scheduleJsonList);
+                    mRoutesList.setAdapter(mAdapter);
+                } catch (JSONException e) {
+                    Log.e(TAG, e.getMessage());
+                }
             }
         }
 

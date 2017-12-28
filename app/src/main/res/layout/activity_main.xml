@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="@dimen/layout_margin"
+        android:layout_marginTop="@dimen/layout_margin"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -19,7 +19,7 @@
             android:id="@+id/work_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/button_margins"
+            android:layout_marginEnd="@dimen/margin"
             android:onClick="workButtonClick"
             android:text="@string/work" />
 
@@ -27,14 +27,45 @@
             android:id="@+id/home_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/button_margins"
+            android:layout_marginStart="@dimen/margin"
             android:onClick="homeButtonClick"
             android:text="@string/home" />
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="@dimen/text_view_height"
+        android:layout_marginStart="@dimen/margin">
+
+        <TextView
+            android:id="@+id/bus_label_tv"
+            android:layout_width="@dimen/bus_column_size"
+            android:layout_height="match_parent"
+            android:text="@string/number" />
+
+        <TextView
+            android:id="@+id/leave_label_tv"
+            android:layout_width="@dimen/column_size"
+            android:layout_height="match_parent"
+            android:text="@string/leave" />
+
+        <TextView
+            android:id="@+id/on_the_spot_label_tv"
+            android:layout_width="@dimen/column_size"
+            android:layout_height="match_parent"
+            android:text="@string/on_the_spot" />
+
+        <TextView
+            android:id="@+id/transfer_label_tv"
+            android:layout_width="@dimen/column_size"
+            android:layout_height="match_parent"
+            android:text="@string/transfer" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/route_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
